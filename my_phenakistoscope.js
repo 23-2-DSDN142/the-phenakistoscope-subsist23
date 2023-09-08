@@ -1,4 +1,4 @@
-const SLICE_COUNT = 10;
+const SLICE_COUNT = 12;
 
 function setup_pScope(pScope){
   pScope.output_mode(ANIMATED_DISK);
@@ -6,30 +6,32 @@ function setup_pScope(pScope){
   pScope.draw_layer_boundaries(true);
   pScope.set_direction(CCW);
   pScope.set_slice_count(SLICE_COUNT);
+  pScope.load_image_sequence("flower" , "png", "13")
 }
 
 function setup_layers(pScope){
 
   new PLayer(null, 220);  //lets us draw the whole circle background, ignoring the boundaries
 
-  var layer1 = new PLayer(faces);
-  layer1.mode( SWIRL(5) );
-  layer1.set_boundary( 200, 1000 );
+  //var layer1 = new PLayer(faces);
+  //layer1.mode( SWIRL(5) );
+  //layer1.set_boundary( 200, 1000 );
 
-  var layer2 = new PLayer(squares);
-  layer2.mode( RING );
-  layer2.set_boundary( 0, 400 );
+  var layer1 = new PLayer(flowers);
+  layer1.mode( SWIRL(1) );
+  layer1.set_boundary( 500, 510 );
+
+
+ // var layer2 = new PLayer(squares);
+  //layer2.mode( RING );
+  //layer2.set_boundary( 0, 400 );
 }
 
-function faces(x, y, animation, pScope){
+function flowers(x, y, animation, pScope){
   
-  scale(animation.frame*2);
-
-  ellipse(0,0,50,50); // draw head
-  fill(30);
-  ellipse(-10,-10,10,10); //draw eye
-  ellipse(10,-10,10,10); // draw eye
-  arc(0,10,20,10,0,180); // draw mouth
+  //scale(animation.frame*1);
+scale(2.3)
+  pScope.draw_image_from_sequence("flower", x, y, animation.frame);
 
 }
 
