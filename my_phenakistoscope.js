@@ -1,4 +1,4 @@
-const SLICE_COUNT = 12;
+const SLICE_COUNT = 16;
 
 function setup_pScope(pScope){
   pScope.output_mode(ANIMATED_DISK);
@@ -6,27 +6,30 @@ function setup_pScope(pScope){
   pScope.draw_layer_boundaries(false);
   pScope.set_direction(CCW);
   pScope.set_slice_count(SLICE_COUNT);
-  pScope.load_image_sequence("flowerC" , "png", "13")
 pScope.load_image("gd play chrome" , "png")
- 
+ pScope.load_image("logo", "png")
+ pScope.load_image("untitled", "png")
+ pScope.load_image("Asset 2" , "png")
 }
 
 function setup_layers(pScope){
 
-  new PLayer(null, 230);  //lets us draw the whole circle background, ignoring the boundaries
+  new PLayer(null,10,130,120);  //lets us draw the whole circle background, ignoring the boundaries
 
   //var layer1 = new PLayer(faces);
   //layer1.mode( SWIRL(5) );
   //layer1.set_boundary( 200, 1000 );
 
-  var layer2 = new PLayer(chrome);
- layer2.mode( RING );
-  layer2.set_boundary( 0, 100 );
+  var layer1 = new PLayer(teapot);
+  layer1.mode( SWIRL(3) );
+  layer1.set_boundary( 1000, 1100 );
+
+  var layer2 = new PLayer(cup);
+ layer2.mode( SWIRL(11) );
+  layer2.set_boundary( 0, 0 );
 
 
-  var layer1 = new PLayer(flowers);
-  layer1.mode( SWIRL(1) );
-  layer1.set_boundary( 722.3, 723 );
+
 
  // var layer2 = new PLayer(squares);
 //layer2.mode( RING );
@@ -37,11 +40,11 @@ function setup_layers(pScope){
 
 }
 
-function flowers(x, y, animation, pScope){
+function teapot(x, y, animation, pScope){
   
-  //scale(animation.frame*1);
-scale(3.3)
-  pScope.draw_image_from_sequence("flowerC", x, y, animation.frame);
+scale(animation.frame*2);
+//scale(3.3)
+pScope.draw_image("Asset 2",200,200)
 
 }
 
@@ -68,11 +71,10 @@ function squares(x, y, animation, pScope){
 
 }
 
-function chrome(x, y, animation, pScope){
+function cup(x, y, animation, pScope){
 
-  scale(4)
-  pScope.draw_image("gd play chrome",0,0);
-push (2);
-pop (1);
+  scale(.6)
+  pScope.draw_image("untitled",110,0);
+
 }
 
